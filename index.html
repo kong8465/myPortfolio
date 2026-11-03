@@ -1,0 +1,282 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>공현태 | 차량 직무 지원자</title>
+<style>
+:root{
+  --accent:#1769ba; --deep:#123c69; --soft:#eff6fc; --line:#dce6ee; --ink:#16283b; --muted:#586b7b;
+  --bar:#1769ba; --bg:#ffffff; --surface:#ffffff; --alt:#f8fafc; --shadow:rgba(24,58,87,.04);
+  --blank:#9aa8b6; --btnink:#ffffff; --route:#7db2e8;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:system-ui,-apple-system,'Malgun Gothic',sans-serif;background:var(--bg);color:var(--ink);font-size:16px;line-height:1.65}
+a{color:inherit;text-decoration:none} button{font:inherit;cursor:pointer}
+button:focus-visible,a:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+.wrap{max-width:1120px;margin:0 auto;padding:0 28px}
+.topbar{height:6px;background:var(--bar)}
+header{position:sticky;top:0;background:rgba(255,255,255,.92);backdrop-filter:saturate(140%) blur(6px);border-bottom:1px solid var(--line);z-index:20}
+html[data-mode="dark"] header{background:rgba(17,26,38,.9)}
+header .wrap{display:flex;align-items:center;justify-content:space-between;gap:18px;min-height:70px}
+.brand{display:inline-flex;align-items:center;gap:10px}
+.brand .mark{display:inline-flex;width:40px;height:40px;border-radius:10px;align-items:center;justify-content:center;background:var(--accent);color:#fff;box-shadow:0 10px 25px rgba(23,105,186,.18)}
+.brand .mark svg{width:32px;height:32px;display:block}
+nav{display:flex;gap:22px;color:var(--muted);font-size:14px;font-weight:600}
+nav a{position:relative;padding:4px 0}
+nav a:hover{color:var(--accent)}
+.theme-panel{display:flex;align-items:center;margin-left:auto}
+.mode-toggle{display:inline-flex;width:40px;height:40px;align-items:center;justify-content:center;border:1px solid var(--line);border-radius:50%;background:var(--surface);color:var(--ink)}
+.mode-toggle svg{width:21px;height:21px;stroke:currentColor;fill:none;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+.mode-toggle .moon{display:none}
+html[data-mode="dark"] .mode-toggle .sun{display:none}
+html[data-mode="dark"] .mode-toggle .moon{display:block}
+.hero{padding:92px 0 90px;position:relative;overflow:hidden}
+.hero:before{content:"";position:absolute;right:-60px;top:-40px;width:280px;height:280px;border-radius:50%;background:linear-gradient(180deg, rgba(23,105,186,.09), rgba(23,105,186,0));}
+.eyebrow{display:inline-flex;align-items:center;gap:10px;letter-spacing:.06em;color:var(--accent);font-weight:800;font-size:13px}
+.eyebrow:before{content:"";width:22px;height:3px;background:var(--accent);border-radius:999px}
+h1{font-size:clamp(38px,5vw,60px);letter-spacing:-.05em;margin:16px 0 16px;line-height:1.18}
+.hero p{font-size:clamp(17px,2vw,20px);max-width:700px;color:var(--muted);line-height:1.9;margin:0 0 28px}
+.cta{display:inline-flex;align-items:center;gap:10px;padding:12px 20px;border-radius:10px;background:var(--accent);color:var(--btnink);font-weight:800;box-shadow:0 10px 24px rgba(23,105,186,.18)}
+.route-strip{margin-top:30px;max-width:430px;position:relative;height:54px}
+.route-strip .line{position:absolute;left:18px;right:18px;top:25px;height:4px;background:var(--route);border-radius:999px}
+.route-strip .stop{position:absolute;top:14px;width:24px;height:24px;border-radius:50%;background:var(--surface);border:4px solid var(--accent);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;color:var(--accent)}
+.route-strip .s1{left:0}.route-strip .s2{left:32%}.route-strip .s3{left:64%}.route-strip .s4{right:0}
+.route-strip .label{position:absolute;top:40px;font-size:12px;color:var(--muted);font-weight:700}
+.route-strip .l1{left:-2px}.route-strip .l2{left:30%}.route-strip .l3{left:62%}.route-strip .l4{right:-4px}
+.section{padding:72px 0;scroll-margin-top:84px}
+.section.alt{background:var(--alt)}
+.section-title{font-size:30px;letter-spacing:-.045em;margin:0 0 8px;font-weight:850}
+.section-desc{color:var(--muted);margin:0 0 28px}
+.about{max-width:820px;font-size:17px;line-height:1.9}.about h3{font-size:22px;margin:0 0 12px;line-height:1.5}.about p{margin:0;color:var(--muted)}
+.tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}.tag{padding:6px 12px;border-radius:999px;background:var(--soft);color:var(--deep);font-weight:700;font-size:13px}
+.skills-route{position:relative;padding-top:8px}
+.skills-route .rail{position:absolute;left:10%;right:10%;top:62px;height:4px;background:var(--route);border-radius:999px;z-index:0}
+.skills-grid{position:relative;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;z-index:1}
+.skill-card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:24px 22px 22px;box-shadow:0 6px 24px var(--shadow);position:relative}
+.skill-card .station{width:52px;height:52px;border-radius:50%;background:var(--surface);border:5px solid var(--accent);display:flex;align-items:center;justify-content:center;color:var(--accent);margin:0 auto 14px;box-shadow:0 0 0 8px var(--bg)}
+.skill-card .station svg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+.num{color:var(--accent);font-size:12px;letter-spacing:.05em;font-weight:850}
+.skill-card h3{font-size:19px;letter-spacing:-.02em;margin:10px 0 10px;text-align:center}.skill-card p{margin:0;color:var(--muted);font-size:16px;text-align:center}
+.works-route{position:relative}
+.works-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;align-items:stretch;position:relative}
+.work-card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:22px;box-shadow:0 6px 24px var(--shadow);position:relative;min-height:260px}
+.work-card .stop-dot{position:absolute;top:-15px;left:22px;width:22px;height:22px;border-radius:50%;background:var(--surface);border:5px solid var(--accent)}
+.work-card h3{margin:9px 0 4px;font-size:20px;letter-spacing:-.02em}.summary{color:var(--muted);font-size:15px;min-height:32px;margin:0 0 15px}
+.fields{padding-top:12px;border-top:1px solid var(--line);display:grid;gap:10px}.field{font-size:15px;display:grid;gap:2px}.field strong{font-size:13px;color:var(--deep)}.blank{color:var(--blank)}
+.day2{grid-column:1;grid-row:1}.day3{grid-column:2;grid-row:1}.day4{grid-column:3;grid-row:1}.day5{grid-column:3;grid-row:2}.day6{grid-column:2;grid-row:2}
+.work-card:before,.work-card:after{content:"";position:absolute;background:var(--route);border-radius:999px}
+.day2:after,.day3:after{top:-5px;left:100%;width:18px;height:4px;transform:translateY(-50%)}
+.day4:after{top:-5px;right:30px;width:4px;height:36px}
+.day5:after{top:-5px;right:100%;width:18px;height:4px;transform:translateY(-50%)}
+.contact{padding-bottom:100px}.email{border:1px solid var(--line);border-radius:14px;padding:24px;display:flex;justify-content:space-between;align-items:center;gap:15px;flex-wrap:wrap;background:var(--surface)}.email address{font-style:normal;overflow-wrap:anywhere}.email a{padding:10px 17px;border-radius:8px;background:var(--accent);color:var(--btnink);font-weight:700}
+.progress{display:flex;gap:10px;flex-wrap:wrap;margin:0 0 22px}.progress span{display:inline-flex;align-items:center;gap:6px;padding:7px 12px;border-radius:999px;background:var(--soft);color:var(--deep);font-size:13px;font-weight:700}.progress i{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--accent)}
+footer{border-top:1px solid var(--line);font-size:13px;color:var(--muted);padding:24px 0}
+@media (max-width:900px){
+  header .wrap{flex-wrap:wrap;padding-top:12px;padding-bottom:12px}
+  nav{order:3;width:100%;justify-content:space-between}
+  .skills-grid,.works-grid{grid-template-columns:1fr 1fr}
+  .skills-route .rail{display:none}
+  .day2,.day3,.day4,.day5,.day6{grid-column:auto;grid-row:auto}
+  .work-card:before,.work-card:after{display:none}
+}
+@media (max-width:640px){
+  .wrap{padding:0 18px}
+  .hero{padding:70px 0 72px}
+  .section{padding:56px 0}
+  h1{font-size:38px}
+  .section-title{font-size:26px}
+  .skills-grid,.works-grid{grid-template-columns:1fr}
+  .route-strip{height:86px}
+  .route-strip .line{left:12px;right:12px}
+  .route-strip .stop{width:20px;height:20px;top:18px;border-width:3px}
+  .route-strip .label{top:48px;font-size:11px}
+}
+
+/* v14: 가로 역량 + 연속 ㄷ자 노선 */
+.skills-route .rail,.skill-card .station{display:none!important}
+.skills-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.skill-card{padding:22px;min-height:186px}
+.skill-card h3,.skill-card p{text-align:left}
+.skill-card h3{margin:8px 0}
+.n-map{position:relative;width:min(100%,780px);margin:20px auto 14px;aspect-ratio:780 / 350}
+.n-map svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+.n-path{fill:none;stroke:var(--route);stroke-width:10;stroke-linecap:round;stroke-linejoin:round}
+.n-stop{position:absolute;transform:translate(-50%,-50%);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:4px;width:84px;height:84px;border-radius:50%;border:5px solid var(--accent);background:var(--surface);color:var(--ink);box-shadow:0 6px 20px var(--shadow);font-size:14px;font-weight:850;z-index:2;transition:transform .15s,background .15s}
+.n-stop:hover,.n-stop[aria-pressed="true"]{transform:translate(-50%,-50%) scale(1.08);background:var(--soft)}
+.n-stop small{font-size:11px;font-weight:650;color:var(--muted)}
+.n-stop:focus-visible{outline:3px solid var(--accent);outline-offset:5px}
+.n-stop.s2{left:13%;top:26%}.n-stop.s3{left:50%;top:26%}.n-stop.s4{left:87%;top:26%}.n-stop.s5{left:87%;top:77%}.n-stop.s6{left:50%;top:77%}
+.detail-placeholder{border:1px dashed var(--line);background:var(--surface);border-radius:14px;padding:25px;color:var(--muted);text-align:center}
+.detail-panel{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:28px;box-shadow:0 10px 30px var(--shadow);animation:appear .23s ease}
+.detail-panel[hidden],.detail-placeholder[hidden]{display:none}
+.detail-head{display:flex;justify-content:space-between;align-items:flex-start;gap:16px}
+.detail-head h3{font-size:23px;margin:6px 0 8px}
+.detail-close{border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:8px;padding:5px 12px}
+.detail-summary{color:var(--muted);margin:0 0 18px}
+.detail-fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.detail-field{border-top:1px solid var(--line);padding:12px 0 0;display:grid;gap:4px}
+.detail-field strong{font-size:14px;color:var(--deep)}
+.detail-field span{color:var(--blank)}
+@keyframes appear{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:900px){.skills-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:640px){.skills-grid{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:10px}.skill-card{min-width:82%;scroll-snap-align:start}.n-stop{width:58px;height:58px;border-width:3px;font-size:12px}.n-stop small{font-size:9px}.n-map{margin:24px auto;aspect-ratio:1 / 1}.n-stop.s2{left:13%;top:26%}.n-stop.s3{left:50%;top:26%}.n-stop.s4{left:87%;top:26%}.n-stop.s5{left:87%;top:77%}.n-stop.s6{left:50%;top:77%}.detail-fields{grid-template-columns:1fr}.detail-panel{padding:20px}}
+@media(prefers-reduced-motion:reduce){.detail-panel{animation:none}.n-stop{transition:none}}
+</style>
+</head>
+<body>
+<div class="topbar"></div>
+<header>
+  <div class="wrap">
+    <a class="brand" href="#home" aria-label="맨 위로 이동">
+      <span class="mark" aria-hidden="true">
+        <svg viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg" role="img">
+          <rect x="5" y="4" width="26" height="28" rx="6" fill="white"/>
+          <path d="M8 14V10.5c0-3 2.3-4.8 5.3-4.8h9.4c3 0 5.3 1.8 5.3 4.8V14" fill="#dcebfb"/>
+          <path d="M8 14h20v10H8z" fill="#174471"/>
+          <path d="M18 14v10" stroke="#9ac0eb" stroke-width="1.1"/>
+          <path d="M8 25.5h20" stroke="#1769ba" stroke-width="3.3"/>
+          <circle cx="11" cy="28.2" r="1.6" fill="#1769ba"/>
+          <circle cx="25" cy="28.2" r="1.6" fill="#1769ba"/>
+          <path d="m10 32-2 2m18-2 2 2" stroke="white" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </span>
+    </a>
+    <div class="theme-panel">
+      <button type="button" id="mode-toggle" class="mode-toggle" aria-label="다크모드 켜기" aria-pressed="false" title="다크모드 전환">
+        <svg class="sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42"/></svg>
+        <svg class="moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 14.2A8.7 8.7 0 0 1 9.8 3.5 8.8 8.8 0 1 0 20.5 14.2Z"/></svg>
+      </button>
+    </div>
+    <nav aria-label="페이지 메뉴"><a href="#about">소개</a><a href="#skills">역량</a><a href="#works">결과물</a><a href="#contact">연락</a></nav>
+  </div>
+</header>
+<main>
+  <section class="hero" id="home">
+    <div class="wrap">
+      <div class="eyebrow">서울교통공사 차량 직무 지원 포트폴리오</div>
+      <h1>공현태 | 차량 직무 지원자</h1>
+      <p>기계공학을 전공하며 설계와 제작을 경험하고,<br>안전한 차량 정비를 위한 역량을 준비해 왔습니다.</p>
+      <a class="cta" href="#works">결과물 보기 <span aria-hidden="true">↓</span></a>
+      <div class="route-strip" aria-hidden="true">
+        <div class="line"></div>
+        <span class="stop s1"></span><span class="label l1">기계공학</span>
+        <span class="stop s2"></span><span class="label l2">설계</span>
+        <span class="stop s3"></span><span class="label l3">제작</span>
+        <span class="stop s4"></span><span class="label l4">차량 직무</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="section alt" id="about">
+    <div class="wrap">
+      <h2 class="section-title">소개</h2>
+      <p class="section-desc">ABOUT ME</p>
+      <div class="about">
+        <h3>기계의 구조와 작동 원리를 이해하고, 꼼꼼하게 확인하는 지원자입니다.</h3>
+        <p>기계공학을 전공하며 CATIA 설계, 3D 프린팅, ANSYS 해석 등을 경험했습니다.<br>설계와 제작 과정에서 문제를 확인하고 개선하며 실무 역량을 쌓아왔습니다.</p>
+        <div class="tags"><span class="tag">기계공학</span><span class="tag">CATIA</span><span class="tag">3D 프린팅</span><span class="tag">ANSYS</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="skills">
+    <div class="wrap">
+      <h2 class="section-title">핵심 역량</h2>
+      <p class="section-desc">실제 경험으로 설명하는 세 가지 강점</p>
+      <div class="skills-route">
+        <div class="skills-grid">
+          <article class="skill-card"><span class="num">01 · ATTENTION</span><h3>꼼꼼함</h3><p>선반 가공 실습에서 기계 정지 여부를 확인하고 안전 절차를 준수했습니다.</p></article>
+          <article class="skill-card"><span class="num">02 · PROBLEM SOLVING</span><h3>문제해결 능력</h3><p>회전형 행거 제작 과정에서 부품 간섭과 작동 범위를 검토하고 설계를 수정했습니다.</p></article>
+          <article class="skill-card"><span class="num">03 · TEAMWORK</span><h3>협업 능력</h3><p>자동 소독 쓰레기통 프로젝트에서 팀원들과 문제를 논의하고 구현 방식을 변경했습니다.</p></article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section alt" id="works">
+    <div class="wrap">
+      <h2 class="section-title">결과물</h2>
+      <p class="section-desc">ㄷ자형 지하철 노선에 따라 Day 2부터 Day 6까지 이동하며 결과물을 확인할 수 있습니다.</p>
+      <div class="n-map" role="group" aria-label="Day 2부터 Day 6까지 연결된 ㄷ자형 지하철 노선 결과물 지도">
+        <svg viewBox="0 0 780 350" preserveAspectRatio="none" aria-hidden="true"><path class="n-path" d="M101.4 91 H678.6 V269.5 H390"/></svg>
+        <button class="n-stop s2" type="button" data-day="2" aria-controls="day-detail" aria-pressed="false">Day 2<small>게임 제작</small></button>
+        <button class="n-stop s3" type="button" data-day="3" aria-controls="day-detail" aria-pressed="false">Day 3<small>작성 예정</small></button>
+        <button class="n-stop s4" type="button" data-day="4" aria-controls="day-detail" aria-pressed="false">Day 4<small>작성 예정</small></button>
+        <button class="n-stop s5" type="button" data-day="5" aria-controls="day-detail" aria-pressed="false">Day 5<small>작성 예정</small></button>
+        <button class="n-stop s6" type="button" data-day="6" aria-controls="day-detail" aria-pressed="false">Day 6<small>작성 예정</small></button>
+      </div>
+      <div class="detail-placeholder" id="detail-placeholder">노선의 Day 역을 선택하면 결과물 내용이 이곳에 표시됩니다.</div>
+      <article class="detail-panel" id="day-detail" aria-live="polite" hidden>
+        <div class="detail-head"><div><span class="num" id="detail-day">DAY 2</span><h3 id="detail-title">Day 2 결과물 자리</h3></div><button class="detail-close" type="button" id="detail-close" aria-label="결과물 닫기">닫기 ×</button></div>
+        <p class="detail-summary blank" id="detail-summary">[한 줄 요약]</p>
+        <div class="detail-fields">
+          <div class="detail-field"><strong>문제</strong><span id="detail-problem">—</span></div>
+          <div class="detail-field"><strong>내가 한 일</strong><span id="detail-action">—</span></div>
+          <div class="detail-field"><strong>사용 기술</strong><span id="detail-tech">—</span></div>
+          <div class="detail-field"><strong>결과</strong><span id="detail-result">—</span></div>
+        </div>
+        <a id="game-link" class="cta" href="https://gymkhana-time-attack.vercel.app/" target="_blank" rel="noopener noreferrer" style="margin-top:22px" hidden>게임 해 보기 ↗</a>
+      </article>
+    </div>
+  </section>
+
+  <section class="section contact" id="contact">
+    <div class="wrap">
+      <h2 class="section-title">연락</h2>
+      <p class="section-desc">CONTACT</p>
+      <div class="email"><address>airdo7777@naver.com</address><a href="mailto:airdo7777@naver.com">이메일 보내기 ↗</a></div>
+    </div>
+  </section>
+</main>
+<footer><div class="wrap">공현태 · 서울교통공사 차량 직무 지원 포트폴리오</div></footer>
+<script>
+const themes={
+  light:{accent:'#1769ba',deep:'#123c69',soft:'#eff6fc',line:'#dce6ee',bg:'#ffffff',surface:'#ffffff',alt:'#f8fafc',ink:'#16283b',muted:'#586b7b',shadow:'rgba(24,58,87,.04)',blank:'#9aa8b6',btnink:'#ffffff',route:'#7db2e8'},
+  dark:{accent:'#67b4ff',deep:'#b5dcff',soft:'#243951',line:'#34475b',bg:'#111a26',surface:'#1b2939',alt:'#162231',ink:'#eef5ff',muted:'#b7c6d6',shadow:'rgba(0,0,0,.16)',blank:'#91a5b8',btnink:'#071827',route:'#4b7dab'}
+};
+function applyTheme(mode){
+  const isDark=mode==='dark';
+  const theme=themes[isDark?'dark':'light'];
+  for(const [name,value] of Object.entries(theme)) document.documentElement.style.setProperty('--'+name,value);
+  document.documentElement.style.setProperty('--bar',theme.accent);
+  document.documentElement.dataset.mode=isDark?'dark':'light';
+  const b=document.getElementById('mode-toggle');
+  b.setAttribute('aria-pressed',String(isDark));
+  b.setAttribute('aria-label',isDark?'라이트모드로 변경':'다크모드로 변경');
+  b.title=isDark?'라이트모드로 변경':'다크모드로 변경';
+}
+document.getElementById('mode-toggle').addEventListener('click',()=>applyTheme(document.documentElement.dataset.mode==='dark'?'light':'dark'));
+applyTheme('light');
+
+const stops=[...document.querySelectorAll('.n-stop')];
+const detail=document.getElementById('day-detail');
+const placeholder=document.getElementById('detail-placeholder');
+function openDay(day){
+  document.getElementById('detail-day').textContent='DAY '+day;
+  const gameLink=document.getElementById('game-link');
+  const data=day==='2'?{
+    title:'짐카나 타임어택',
+    summary:'자동차 웹 게임 제작 프로젝트에서 UI 점검과 오류 테스트를 맡았습니다.',
+    problem:'자동차 게임의 화면 구성과 기능을 점검하고, 플레이 중 발생하는 문제를 파악해야 했습니다.',
+    action:'팀 게임 기획에 참여하고 UI와 휴대폰 화면을 확인했습니다. 게임 종료 시 미니맵이 확대되는 현상과 온라인 초대 문제를 테스트 기록에 정리했습니다.',
+    tech:'게임 기획 워크시트(PPT), 웹 게임 UI 테스트',
+    result:'팀 워크시트에 UI 담당과 테스트 담당으로 참여한 역할 및 버그 수정 요청 사항 2건을 기록했습니다.'
+  }:null;
+  document.getElementById('detail-title').textContent=data?data.title:'Day '+day+' 결과물 자리';
+  const summary=document.getElementById('detail-summary');
+  summary.textContent=data?data.summary:'[한 줄 요약]';
+  summary.classList.toggle('blank',!data);
+  for(const id of ['problem','action','tech','result'])document.getElementById('detail-'+id).textContent=data?data[id]:'—';
+  gameLink.hidden=!data;
+  detail.hidden=false;placeholder.hidden=true;
+  stops.forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.day===String(day))));
+  if(matchMedia('(max-width:640px)').matches)detail.scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+function closeDay(){detail.hidden=true;placeholder.hidden=false;stops.forEach(b=>b.setAttribute('aria-pressed','false'))}
+stops.forEach(b=>b.addEventListener('click',()=>openDay(b.dataset.day)));
+document.getElementById('detail-close').addEventListener('click',closeDay);
+</script>
+</body>
+</html>
