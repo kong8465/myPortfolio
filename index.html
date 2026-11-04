@@ -202,7 +202,7 @@ footer{border-top:1px solid var(--line);font-size:13px;color:var(--muted);paddin
       <div class="n-map" role="group" aria-label="Day 2부터 Day 6까지 연결된 ㄷ자형 지하철 노선 결과물 지도">
         <svg viewBox="0 0 780 350" preserveAspectRatio="none" aria-hidden="true"><path class="n-path" d="M101.4 91 H678.6 V269.5 H390"/></svg>
         <button class="n-stop s2" type="button" data-day="2" aria-controls="day-detail" aria-pressed="false">Day 2<small>게임 제작</small></button>
-        <button class="n-stop s3" type="button" data-day="3" aria-controls="day-detail" aria-pressed="false">Day 3<small>작성 예정</small></button>
+        <button class="n-stop s3" type="button" data-day="3" aria-controls="day-detail" aria-pressed="false">Day 3<small>면접 준비 허브</small></button>
         <button class="n-stop s4" type="button" data-day="4" aria-controls="day-detail" aria-pressed="false">Day 4<small>작성 예정</small></button>
         <button class="n-stop s5" type="button" data-day="5" aria-controls="day-detail" aria-pressed="false">Day 5<small>작성 예정</small></button>
         <button class="n-stop s6" type="button" data-day="6" aria-controls="day-detail" aria-pressed="false">Day 6<small>작성 예정</small></button>
@@ -263,13 +263,20 @@ function openDay(day){
     action:'팀 게임 기획에 참여하고 UI와 휴대폰 화면을 확인했습니다. 게임 종료 시 미니맵이 확대되는 현상과 온라인 초대 문제를 테스트 기록에 정리했습니다.',
     tech:'게임 기획 워크시트(PPT), 웹 게임 UI 테스트',
     result:'팀 워크시트에 UI 담당과 테스트 담당으로 참여한 역할 및 버그 수정 요청 사항 2건을 기록했습니다.'
+  }:day==='3'?{
+    title:'맞춤형 면접 준비 허브',
+    summary:'취업 준비생의 지원 분야에 맞춰 면접 준비 내용을 정리하는 웹사이트를 기획하고 개선했습니다.',
+    problem:'여러 기업에 지원하는 취업 준비생이 자신의 지원 분야에 맞춰 예상질문과 답변을 정리할 공간이 필요했습니다.',
+    action:'기존 웹사이트의 UI 개선에 참여하고, 입력한 예상질문의 답변을 수정할 수 있도록 기능 개선 의견을 제시했습니다.',
+    tech:'ChatGPT(GPT) 활용, 팀원들의 Claude 활용 및 UI 검토',
+    result:'취업 준비생 맞춤형 면접 준비 사이트를 작업하고, 화면 구성과 예상질문 답변 수정 기능을 개선하는 과정에 참여했습니다.'
   }:null;
   document.getElementById('detail-title').textContent=data?data.title:'Day '+day+' 결과물 자리';
   const summary=document.getElementById('detail-summary');
   summary.textContent=data?data.summary:'[한 줄 요약]';
   summary.classList.toggle('blank',!data);
   for(const id of ['problem','action','tech','result'])document.getElementById('detail-'+id).textContent=data?data[id]:'—';
-  gameLink.hidden=!data;
+  gameLink.hidden=day!=='2';
   detail.hidden=false;placeholder.hidden=true;
   stops.forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.day===String(day))));
   if(matchMedia('(max-width:640px)').matches)detail.scrollIntoView({behavior:'smooth',block:'nearest'});
