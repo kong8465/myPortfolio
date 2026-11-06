@@ -227,7 +227,7 @@ footer{border-top:1px solid var(--line);font-size:13px;color:var(--muted);paddin
         <button class="n-stop s2" type="button" data-day="2" aria-controls="day-detail" aria-pressed="false">Day 2<small>게임 제작</small></button>
         <button class="n-stop s3" type="button" data-day="3" aria-controls="day-detail" aria-pressed="false">Day 3<small>면접 준비 허브</small></button>
         <button class="n-stop s4" type="button" data-day="4" aria-controls="day-detail" aria-pressed="false">Day 4<small>공정 개선</small></button>
-        <button class="n-stop s5" type="button" data-day="5" aria-controls="day-detail" aria-pressed="false">Day 5<small>작성 예정</small></button>
+        <button class="n-stop s5" type="button" data-day="5" aria-controls="day-detail" aria-pressed="false">Day 5<small>4M 검수</small></button>
         <button class="n-stop s6" type="button" data-day="6" aria-controls="day-detail" aria-pressed="false">Day 6<small>작성 예정</small></button>
       </div>
       <div class="detail-placeholder" id="detail-placeholder">노선의 Day 역을 선택하면 결과물 내용이 이곳에 표시됩니다.</div>
@@ -255,6 +255,8 @@ footer{border-top:1px solid var(--line);font-size:13px;color:var(--muted);paddin
         </div>
         <a id="game-link" class="cta" href="https://gymkhana-time-attack.vercel.app/" target="_blank" rel="noopener noreferrer" style="margin-top:22px" hidden>게임 해 보기 ↗</a>
         <a id="app-link" class="cta" href="https://claude.ai/artifact/9MefTqNVf4ZHp3zd65BLmi#contact" target="_blank" rel="noopener noreferrer" style="margin-top:22px" hidden>앱 열기 ↗</a>
+        <a id="day5-app-link" class="cta" href="https://script.google.com/macros/s/AKfycby_zMvr0Qg4iYPjpHIy6Jclhdq2MFDYxpWQMHD7hOfyAgIh8rramSwTNS8A-broEET5/exec" target="_blank" rel="noopener noreferrer" style="margin-top:22px" hidden>웹앱 보기 ↗</a>
+        <a id="day5-report-link" class="cta" href="https://docs.google.com/document/d/1Euu6tEzTMlUglUAEOc-I2zrpqNdy_VEjFi0ZDBoa5SY/edit?tab=t.0" target="_blank" rel="noopener noreferrer" style="margin-top:22px" hidden>보고서 보기 ↗</a>
         <a id="report-link" class="cta" href="https://docs.google.com/document/d/1c7qVuCntf8Z9qqfr6YyxxNSCcU3e5_OEBNWGvYIAwtY/edit?tab=t.0" target="_blank" rel="noopener noreferrer" style="margin-top:22px" hidden>보고서 보기 ↗</a>
       </article>
     </div>
@@ -316,6 +318,13 @@ function openDay(day){
     action:'5조 리서처로 NCS 수행준거를 조사하고, AS-IS 업무 흐름의 승인 대기·중복 입력·재작업을 검토했습니다. 사전 위임 기준 내 안건의 승인 단계를 줄이는 TO-BE 개선안과 1페이지 보고서 정리에 참여했습니다.',
     tech:'draw.io, Excel 비교표, ECRS 분석, NCS 수행준거, 생성형 AI 활용',
     result:'가정한 업무 흐름도에서 넘겨주기 12→6회, 대기 지점 4→2곳, 단계 13→11개로 줄이는 개선안을 도출했습니다. 실제 처리시간 단축은 검증하지 않았습니다.'
+  }:day==='5'?{
+    title:'생산기술 공장설계 4M 검수 웹앱',
+    summary:'자료의 개정 버전과 4M 검수 상태를 연결한 5조 웹앱 프로토타입입니다.',
+    problem:'도면과 체크시트가 개정되면 최신본과 기존 검수 이력을 수기로 대조해야 해 재확인이 지연되거나 누락될 수 있었습니다.',
+    action:'5조의 4M 검수 웹앱 프로젝트에 참여했습니다.',
+    tech:'Google Apps Script, 자료 개정 이력 관리, 4M 검수 상태 관리',
+    result:'팀에서 자료 개정 시 버전을 갱신하고 기존 검수 건을 ‘재확인 필요’로 전환하는 웹앱 프로토타입을 제작했습니다.'
   }:null;
   document.getElementById('detail-title').textContent=data?data.title:'Day '+day+' 결과물 자리';
   const summary=document.getElementById('detail-summary');
@@ -325,6 +334,8 @@ function openDay(day){
   gameLink.hidden=day!=='2';
   document.getElementById('app-link').hidden=day!=='3';
   document.getElementById('report-link').hidden=day!=='4';
+  document.getElementById('day5-app-link').hidden=day!=='5';
+  document.getElementById('day5-report-link').hidden=day!=='5';
   document.getElementById('process-visual').hidden=day!=='4';
   detail.hidden=false;placeholder.hidden=true;
   stops.forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.day===String(day))));
