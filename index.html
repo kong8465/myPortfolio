@@ -220,7 +220,7 @@ footer{border-top:1px solid var(--line);font-size:13px;color:var(--muted);paddin
         <button class="n-stop s3" type="button" data-day="3" aria-controls="day-detail" aria-pressed="false">Day 3<small>면접 준비 허브</small></button>
         <button class="n-stop s4" type="button" data-day="4" aria-controls="day-detail" aria-pressed="false">Day 4<small>공정 개선</small></button>
         <button class="n-stop s5" type="button" data-day="5" aria-controls="day-detail" aria-pressed="false">Day 5<small>4M 검수</small></button>
-        <button class="n-stop s6" type="button" data-day="6" aria-controls="day-detail" aria-pressed="false">Day 6<small>작성 예정</small></button>
+        <button class="n-stop s6" type="button" data-day="6" aria-controls="day-detail" aria-pressed="false">Day 6<small>기업 분석</small></button>
       </div>
       <div class="detail-placeholder" id="detail-placeholder">노선의 Day 역을 선택하면 결과물 내용이 이곳에 표시됩니다.</div>
       <article class="detail-panel" id="day-detail" aria-live="polite" hidden>
@@ -317,6 +317,13 @@ function openDay(day){
     action:'5조의 4M 검수 웹앱 프로젝트에 참여했습니다.',
     tech:'Google Apps Script, 자료 개정 이력 관리, 4M 검수 상태 관리',
     result:'팀에서 자료 개정 시 버전을 갱신하고 기존 검수 건을 ‘재확인 필요’로 전환하는 웹앱 프로토타입을 제작했습니다.'
+  }:day==='6'?{
+    title:'공시 기반 현대자동차·기아 기업 분석',
+    summary:'사업보고서와 분기보고서를 대조해 두 회사의 사업 구조와 실적을 정리했습니다.',
+    problem:'기업 실적을 비교하려면 공시마다 다른 기준 기간과 단위를 확인하고, 수치의 출처를 추적할 수 있어야 했습니다.',
+    action:'현대자동차와 기아의 공시에서 사업 구성, 생산 실적, 매출과 영업이익을 찾아 정리했습니다. 현대자동차 SWOT 항목과 두 회사의 분석 요약에 근거 쪽수를 붙였습니다.',
+    tech:'DART 공시 원문 대조, SWOT 분석, 전년 대비 증감률 계산',
+    result:'현대자동차 SWOT 분석표와 현대자동차·기아 기업 분석 1장 요약을 정리했습니다. 실적 수치와 증감 요인을 공시 원문에서 다시 확인할 수 있도록 출처를 표시했습니다.'
   }:null;
   document.getElementById('detail-title').textContent=data?data.title:'Day '+day+' 결과물 자리';
   const summary=document.getElementById('detail-summary');
@@ -324,10 +331,10 @@ function openDay(day){
   summary.classList.toggle('blank',!data);
   for(const id of ['problem','action','tech','result'])document.getElementById('detail-'+id).textContent=data?data[id]:'—';
   detail.querySelectorAll('[data-shot-day]').forEach(figure=>figure.hidden=figure.dataset.shotDay!==day);
+  document.getElementById('day5-app-link').hidden=day!=='5';
   gameLink.hidden=day!=='2';
   document.getElementById('app-link').hidden=day!=='3';
   document.getElementById('report-link').hidden=day!=='4';
-  document.getElementById('day5-app-link').hidden=day!=='5';
   document.getElementById('process-visual').hidden=day!=='4';
   detail.hidden=false;placeholder.hidden=true;
   stops.forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.day===String(day))));
